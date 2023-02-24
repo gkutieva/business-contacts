@@ -1,8 +1,13 @@
-FROM node:18-alpine
-ENV NODE_ENV=development
+FROM node
+
+COPY . /app
+
 WORKDIR /app
-COPY package.json .
-RUN npm install --ignore-scripts
-COPY . .
+
+RUN npm config set registry https://registry.npmjs.org
+
+RUN npm install
+
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+
+CMD ["npm", "start"]

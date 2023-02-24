@@ -1,10 +1,10 @@
-FROM node:18-alpine
+FROM node
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 
-RUN apk add g++ make py3-pip
+RUN npm config set registry https://registry.npmjs.org
 
 RUN npm install && npm run build
 
